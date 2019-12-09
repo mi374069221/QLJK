@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qm.mapper.WarnlistMapper" >
+  <resultMap id="BaseResultMap" type="com.qm.pojo.Warnlist" >
+    <id column="Id" property="id" jdbcType="BIGINT" />
+    <result column="nodeIp" property="nodeip" jdbcType="VARCHAR" />
+    <result column="warnleave" property="warnleave" jdbcType="TINYINT" />
+    <result column="fromguy" property="fromguy" jdbcType="VARCHAR" />
+    <result column="warncontent" property="warncontent" jdbcType="VARCHAR" />
+    <result column="aviliablevalue" property="aviliablevalue" jdbcType="VARCHAR" />
+    <result column="warnvalue" property="warnvalue" jdbcType="VARCHAR" />
+    <result column="warntime" property="warntime" jdbcType="TIMESTAMP" />
+    <result column="dealwith" property="dealwith" jdbcType="TINYINT" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, nodeIp, warnleave, fromguy, warncontent, aviliablevalue, warnvalue, warntime, 
+    dealwith, des
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qm.pojo.WarnlistExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from warnlist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from warnlist
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from warnlist
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qm.pojo.WarnlistExample" >
+    delete from warnlist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qm.pojo.Warnlist" >
+    insert into warnlist (Id, nodeIp, warnleave, 
+      fromguy, warncontent, aviliablevalue, 
+      warnvalue, warntime, dealwith, 
+      des)
+    values (#{id,jdbcType=BIGINT}, #{nodeip,jdbcType=VARCHAR}, #{warnleave,jdbcType=TINYINT}, 
+      #{fromguy,jdbcType=VARCHAR}, #{warncontent,jdbcType=VARCHAR}, #{aviliablevalue,jdbcType=VARCHAR}, 
+      #{warnvalue,jdbcType=VARCHAR}, #{warntime,jdbcType=TIMESTAMP}, #{dealwith,jdbcType=TINYINT}, 
+      #{des,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qm.pojo.Warnlist" >
+    insert into warnlist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="nodeip != null" >
+        nodeIp,
+      </if>
+      <if test="warnleave != null" >
+        warnleave,
+      </if>
+      <if test="fromguy != null" >
+        fromguy,
+      </if>
+      <if test="warncontent != null" >
+        warncontent,
+      </if>
+      <if test="aviliablevalue != null" >
+        aviliablevalue,
+      </if>
+      <if test="warnvalue != null" >
+        warnvalue,
+      </if>
+      <if test="warntime != null" >
+        warntime,
+      </if>
+      <if test="dealwith != null" >
+        dealwith,
+      </if>
+      <if test="des != null" >
+        des,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="nodeip != null" >
+        #{nodeip,jdbcType=VARCHAR},
+      </if>
+      <if test="warnleave != null" >
+        #{warnleave,jdbcType=TINYINT},
+      </if>
+      <if test="fromguy != null" >
+        #{fromguy,jdbcType=VARCHAR},
+      </if>
+      <if test="warncontent != null" >
+        #{warncontent,jdbcType=VARCHAR},
+      </if>
+      <if test="aviliablevalue != null" >
+        #{aviliablevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="warnvalue != null" >
+        #{warnvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="warntime != null" >
+        #{warntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealwith != null" >
+        #{dealwith,jdbcType=TINYINT},
+      </if>
+      <if test="des != null" >
+        #{des,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qm.pojo.WarnlistExample" resultType="java.lang.Integer" >
+    select count(*) from warnlist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update warnlist
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.nodeip != null" >
+        nodeIp = #{record.nodeip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warnleave != null" >
+        warnleave = #{record.warnleave,jdbcType=TINYINT},
+      </if>
+      <if test="record.fromguy != null" >
+        fromguy = #{record.fromguy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warncontent != null" >
+        warncontent = #{record.warncontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aviliablevalue != null" >
+        aviliablevalue = #{record.aviliablevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warnvalue != null" >
+        warnvalue = #{record.warnvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warntime != null" >
+        warntime = #{record.warntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dealwith != null" >
+        dealwith = #{record.dealwith,jdbcType=TINYINT},
+      </if>
+      <if test="record.des != null" >
+        des = #{record.des,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update warnlist
+    set Id = #{record.id,jdbcType=BIGINT},
+      nodeIp = #{record.nodeip,jdbcType=VARCHAR},
+      warnleave = #{record.warnleave,jdbcType=TINYINT},
+      fromguy = #{record.fromguy,jdbcType=VARCHAR},
+      warncontent = #{record.warncontent,jdbcType=VARCHAR},
+      aviliablevalue = #{record.aviliablevalue,jdbcType=VARCHAR},
+      warnvalue = #{record.warnvalue,jdbcType=VARCHAR},
+      warntime = #{record.warntime,jdbcType=TIMESTAMP},
+      dealwith = #{record.dealwith,jdbcType=TINYINT},
+      des = #{record.des,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qm.pojo.Warnlist" >
+    update warnlist
+    <set >
+      <if test="nodeip != null" >
+        nodeIp = #{nodeip,jdbcType=VARCHAR},
+      </if>
+      <if test="warnleave != null" >
+        warnleave = #{warnleave,jdbcType=TINYINT},
+      </if>
+      <if test="fromguy != null" >
+        fromguy = #{fromguy,jdbcType=VARCHAR},
+      </if>
+      <if test="warncontent != null" >
+        warncontent = #{warncontent,jdbcType=VARCHAR},
+      </if>
+      <if test="aviliablevalue != null" >
+        aviliablevalue = #{aviliablevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="warnvalue != null" >
+        warnvalue = #{warnvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="warntime != null" >
+        warntime = #{warntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealwith != null" >
+        dealwith = #{dealwith,jdbcType=TINYINT},
+      </if>
+      <if test="des != null" >
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qm.pojo.Warnlist" >
+    update warnlist
+    set nodeIp = #{nodeip,jdbcType=VARCHAR},
+      warnleave = #{warnleave,jdbcType=TINYINT},
+      fromguy = #{fromguy,jdbcType=VARCHAR},
+      warncontent = #{warncontent,jdbcType=VARCHAR},
+      aviliablevalue = #{aviliablevalue,jdbcType=VARCHAR},
+      warnvalue = #{warnvalue,jdbcType=VARCHAR},
+      warntime = #{warntime,jdbcType=TIMESTAMP},
+      dealwith = #{dealwith,jdbcType=TINYINT},
+      des = #{des,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
