@@ -16,7 +16,8 @@ public class WarnListController {
     private WarnListService warnListService;
     @RequestMapping(value = "/warnList", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public List<Warnlist> getWarnList(Byte dealWith){
+    public List<Warnlist> getWarnList(){
+        Byte dealWith = 0;
         List<Warnlist> warnList = warnListService.getWarnList(dealWith);
         System.out.println("当前传入值："+dealWith);
         /*for (Warnlist warnlist : warnList) {
@@ -26,7 +27,7 @@ public class WarnListController {
         Iterator<Warnlist> iterator = warnList.iterator();
         while (iterator.hasNext()){
           Warnlist warnlist = iterator.next();
-            System.out.println("警告列表："+warnlist.getAviliablevalue()+"...");
+            System.out.println("警告列表："+warnlist.getWarntime()+"...");
         }
 
         return warnList;

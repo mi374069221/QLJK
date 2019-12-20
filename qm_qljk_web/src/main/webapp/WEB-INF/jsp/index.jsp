@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -36,7 +37,7 @@
     <!-- CALENDER CSS -->
 
     <%--top--%>
-    <link rel="stylesheet" href="/css/style_t.css">
+    <link rel="stylesheet" href="/css/style_y.css">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js">
     </script>
@@ -245,18 +246,67 @@
                             <div class="lichenggaikuang">
                                 <!-- 顶部总体概况小盒子 -->
                                 <div class="top">
-                                    <div class="top-left clearfix">
-                                    <a href="#">
-                                        <!-- 总体概况的左边的小图片我截的图名字是info_0.png！！！！！！！！！！！！！ -->
-                                        <img src="./img/info_0.png" alt="">
-                                        <span>今日概况</span>
-                                    </a>
+                                    <div class="top-left">
+                                        <div class="top-leftone">
+                                            <a href=" #">
+                                                <!-- 总体概况的左边的小图片我截的图名字是info_0.png！！！！！！！！！！！！！ -->
+                                                <img src="./img/info_0.png" alt="">
+                                                <span>总体概况</span>
+                                            </a>
+                                        </div>
+                                        <div class="top-lefttwo click">
+                                            <a class="click_a" href="#" >
+                                                <!-- 总体概况的左边的小图片我截的图名字是info_0.png！！！！！！！！！！！！！ -->
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-bolt"> </i>
+                                                <span onclick="getWarnList()">告警详情</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="none">
+                                        <table id="listData">
+                                            <tr>
+                                            <th>序列</th>
+                                            <th>IP</th>
+                                            <th>告警级别</th>
+                                            <th>告警源</th>
+                                            <th>告警原因</th>
+                                            <th>允许范围</th>
+                                            <th>告警值</th>
+                                            <th>告警时间</th>
+                                            <th>处理结果</th>
+                                            <th>描述</th>
+                                            </tr>
+                                        </table>
+                                        <div  class="c-pages">
+                                            <div class="cp-item">
+                                                <span>共</span>
+                                                <span id="cp-count">3</span>
+                                                <span>条</span>
+                                            </div>
+                                            <div class="cp-item">
+                                                <span id="curr-page">1</span>
+                                                <span>/</span>
+                                                <span id="total-page">1</span>
+                                            </div>
+                                            <div class="cp-item" style="color: #0e2e42">
+                                                <button id="home">首页</button>
+                                                <button id="prev">上页</button>
+                                                <button id="next">下页</button>
+                                                <button id="last">尾页</button>
+                                            </div>
+                                            <%--<div class="cp-item">
+                                                <button id="goTo">转到</button>
+                                                <input type="number" id="goToPage" />
+                                                <span>页</span>
+                                            </div>--%>
+                                        </div>
                                     </div>
 
                                     <div class="top-right">
                                         <div class="time">
-                                                   <p id="time_top" style="font-size: 20px">00:00:00</p>
-                                                   <p id="date_top"></p>
+                                            <p id="time_top" style="font-size: 20px">00:00:00</p>
+                                            <p id="date_top"></p>
                                         </div>
                                         <div class="weather">
                                             <img id="weatherImg" src="./img/weather/duoyun.png" alt="">
@@ -268,58 +318,6 @@
                                     </div>
 
                                 </div>
-
-
-                                <%--<div id="trendtable" style="width: 90%;">
-                                    <table id='pv_table' class="table table-bordered" margin=auto>
-                                        <thead style='font-weight: bold'>
-                                        <tr>
-                                            <td>序列</td>
-                                            <td>服务器IP</td>
-                                            <td>告警级别</td>
-                                            <td>告警源</td>
-                                            <td>告警原因</td>
-                                            <td>告警值</td>
-                                            <td>允许范围</td>
-                                            <td>告警时间</td>
-                                            <td>处理情况</td>
-                                            <td>备注</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>192.168.1.201</td>
-                                            <td>严重</td>
-                                            <td>温度传感器</td>
-                                            <td>温度>24℃</td>
-                                            <td>25℃</td>
-                                            <td>-20℃——24℃</td>
-                                            <td>2019/09/12 12:11:43</td>
-                                            <td>
-                                                <input name="gjcl" type="radio" checked="checked"/>未处理
-                                                <input name="gjcl" type="radio" />已处理
-                                            </td>
-                                            <td>急需处理</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>192.168.1.201</td>
-                                            <td>严重</td>
-                                            <td>温度传感器</td>
-                                            <td>温度>24℃</td>
-                                            <td>25℃</td>
-                                            <td>-20℃——24℃</td>
-                                            <td>2019/09/12 12:11:43</td>
-                                            <td>
-                                                <input name="gjcl1" type="radio" checked="checked"/>未处理
-                                                <input name="gjcl1" type="radio" />已处理
-                                            </td>
-                                            <td>急需处理</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>--%>
 
 
                                 <!-- 下部分三块大盒子 -->
@@ -972,7 +970,6 @@
                                 }
 
                                 var data1 = {fx:[],fs:[],wd:[],sw:[],zdpl:[],x:[]};
-                                var JKGJ=[];
 
                                 var now1 = +new Date()-59*1000;
                                 var oneDay1 = 1000;
@@ -984,7 +981,7 @@
                                 for (var i = 0; i < 60; i++) {
                                     data1 = randomData1(data1);
                                 }
-                                console.info(JKGJ)
+
                                 setInterval(function() {
                                     data1.x.shift()
                                     data1.wd.shift()
@@ -1308,10 +1305,171 @@
         })
 
     }
+
+
+
+    //获取监控列表
+    const atwo = document.querySelector('.click .click_a')
+    const aone = document.querySelector('.top-leftone')
+    const table = document.querySelector('.none')
+    const bottom = document.querySelector('.bottom')
+    atwo.addEventListener('click', function () {
+        table.style.display = 'block';
+        bottom.style.display = 'none'
+    })
+    aone.addEventListener('click', function () {
+        table.style.display = 'none';
+        bottom.style.display = 'block'
+    })
+
+
+    function getWarnList() {
+
+        var list = '';
+        $.get("http://localhost:8080/warnList", function (warnList) {
+
+            for (var i = 0; i < 3; i++) {
+                warnList[i].dealwith==0?warnList[i].dealwith='未处理':warnList[i].dealwith='已处理'
+                if(warnList[i].des==null){
+                    warnList[i].des=''
+                }
+
+                var oldDate = new Date(warnList[i].warntime)
+                var valueDate = oldDate.getFullYear() + '/' + (oldDate.getMonth() + 1) + '/' + oldDate.getDate() +
+                    ' ' + (oldDate.getHours() >= 10 ? oldDate.getHours() : '0' +oldDate.getHours()) + ':' +
+                    (oldDate.getMinutes() >= 10 ? oldDate.getMinutes() : '0' + oldDate.getMinutes()) +
+                    ':' + (oldDate.getSeconds() >= 10 ? oldDate.getSeconds() : '0' + oldDate.getSeconds());
+                list = "<tr><td>" + warnList[i].id + "</td><td>" + warnList[i].nodeip +
+                    "</td><td>" + warnList[i].warnleave + "</td><td>" + warnList[i].fromguy + "</td><td>" +
+                    warnList[i].warncontent + "</td><td>" + warnList[i].aviliablevalue + "</td><td>" + warnList[i].warnvalue + "</td><td>" +
+                    valueDate + "</td><td>" + warnList[i].dealwith + "</td><td>" + warnList[i].des + "</td></tr>";
+                $("#listData").append(list)
+
+            }
+        })
+
+
+    }
+
+
+
+    /**分页**/
+
+    // li jquery object array
+    var newsLis = $("#news-lis").children();
+
+    // total news count
+    var count = newsLis.length;
+
+    // max count for one page
+    var ONE_PAGE_COUNT = 5;
+
+    // total pages
+    var totalPage = parseInt(count / ONE_PAGE_COUNT) + ((count % ONE_PAGE_COUNT) == 0? 0 : 1);
+
+    // init page
+    var currPage = 1;
+
+    // function used to set news count
+    /*function setUICount(count) {
+        if (count == undefined)
+            count = 0;
+        $("#cp-count").text(count);
+    }*/
+
+    // function used to set total pages
+    function setUIPages(totalPage) {
+        totalPage = Math.max(1, totalPage);
+        $("#total-page").text(totalPage)
+    }
+
+    // update curr page
+    function setUICurrPage(currPage) {
+        currPage = Math.max(1, currPage);
+        $("#curr-page").text(currPage);
+    }
+
+    // 传入显示的page参数，显示对应页面的新闻列表，隐藏其他列表
+    function scanAllForShow(page) {
+        // page at least 1 or max totalPage
+        page = Math.max(1, Math.min(totalPage, page));
+        for (var i = 0;i < count;i++) {
+            if (parseInt(i / ONE_PAGE_COUNT) + 1 == page)
+                $(newsLis[i]).attr("style", "");
+            else
+                $(newsLis[i]).attr("style", "display: none");
+        }
+    }
+
+    function homePage() {
+        currPage = 1;
+        scanAllForShow(currPage);
+        setUICurrPage(currPage);
+    }
+
+    function nexePage() {
+        var last = currPage;
+        if (last == totalPage)
+            return;
+
+        scanAllForShow(++currPage);
+
+        setUICurrPage(currPage);
+    }
+
+    function prevPage() {
+        var next = currPage;
+        if (next <= 1)
+            return;
+
+        scanAllForShow(--currPage);
+
+        setUICurrPage(currPage);
+    }
+
+    function lastPage() {
+        currPage = totalPage;
+        scanAllForShow(currPage);
+        setUICurrPage(currPage);
+    }
+
+    function goToPage() {
+        var target = $("#goToPage").val();
+        if (target == undefined)
+            target = currPage;
+        target = Math.max(1, Math.min(totalPage, target));
+        currPage = target;
+        scanAllForShow(target);
+        setUICurrPage(currPage);
+        $("#goToPage").val("");
+    }
+
+    // 页面加载完成后调用此函数
+    function init() {
+        newsLis = $("#news-lis").children();
+        count = newsLis.length;
+        totalPage = count / ONE_PAGE_COUNT + ((count % ONE_PAGE_COUNT) == 0? 0 : 1);
+        currPage = 1;
+        setUICount(count);
+        setUIPages(totalPage);
+        setUICurrPage(currPage);
+        scanAllForShow(currPage);
+        // 注册点击函数
+        $("#home").click(homePage);
+        $("#prev").click(prevPage);
+        $("#next").click(nexePage);
+        $("#last").click(lastPage);
+        $("#goTo").click(goToPage);
+
+    }
+
+/*提前加载*/
     window.onload = function(){
         listData();
         getWeatherWind();
+        init();
     };
+
 
 </script>
 

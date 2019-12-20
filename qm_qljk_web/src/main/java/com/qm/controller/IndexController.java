@@ -13,6 +13,4 @@ public class IndexController {
     public String showBJ() {
         return "bj";
     }
-    @RequestMapping("/test")
-    public String showTest() {return "test";}
 }

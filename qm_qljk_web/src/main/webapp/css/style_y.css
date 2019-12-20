@@ -26,14 +26,16 @@ ul {
 }
 .lichenggaikuang {
   width: 100%;
-  height: 230px ;
+  height: 330px ;
   background: #081832;
+  overflow: hidden;
 }
 .lichenggaikuang .top {
   padding: 40px 0 50px 0;
   position: relative;
 }
-.lichenggaikuang .top .top-left a {
+.lichenggaikuang .top .top-leftone a,
+.lichenggaikuang .top .top-lefttwo a {
   float: left;
   width: 130px;
   height: 30px;
@@ -43,17 +45,43 @@ ul {
   border-radius: 3px;
   box-shadow: 0px 1px 3px 1px #59c0e4;
 }
-.lichenggaikuang .top .top-left a img {
+.lichenggaikuang .top .top-leftone a img,
+.lichenggaikuang .top .top-lefttwo a img {
   float: left;
   margin: 2px 0 0 10px;
   width: 25px;
   height: 25px;
 }
-.lichenggaikuang .top .top-left a span {
+.lichenggaikuang .top .top-leftone a span,
+.lichenggaikuang .top .top-lefttwo a span {
   padding-left: 10px;
   font-size: 16px;
 }
-
+.lichenggaikuang .top .none {
+  color: #fff;
+  position: absolute;
+  top: 110px;
+  text-align: center;
+  display: none;
+  width: 100%;
+  padding: 0 50px;
+}
+.lichenggaikuang .top .none table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  height: 100%;
+}
+.lichenggaikuang .top .none th {
+  padding: 10px 40px;
+  border: 1px solid #fff;
+  font-size: 12px;
+}
+.lichenggaikuang .top .none td {
+  border: 1px solid #fff;
+  padding: 10px 5px;
+  font-size: 14px;
+}
 .lichenggaikuang .top .top-right {
   position: absolute;
   display: flex;
@@ -66,30 +94,30 @@ ul {
   border-radius: 3px;
   box-shadow: 0px 1px 5px 0px #59c0e4;
 }
-.lichenggaikuang .top .top-right .time,
-.lichenggaikuang .top .top-right .weather {
+.lichenggaikuang .top .time,
+.lichenggaikuang .top .weather {
   flex: 1;
 }
-.lichenggaikuang .top .top-right .time {
+.lichenggaikuang .top .time {
   color: #cedef7;
   border-right: 1px solid #cedef7;
 }
-.lichenggaikuang .top .top-right .time  {
+.lichenggaikuang .top .time .day {
   text-align: center;
   margin: 0px 0  5px 0;
 }
-.lichenggaikuang .top .top-right .time  p {
-  font-size: 5px;
+.lichenggaikuang .top .time .day span {
+  font-size: 22px;
   color: #fff;
 }
-/*.lichenggaikuang .top .time .week {
+.lichenggaikuang .top .time .week {
   padding-left: 10px;
 }
 .lichenggaikuang .top .time .week i {
   float: left;
   font-style: normal;
   font-size: 12px;
-}*/
+}
 .lichenggaikuang .weather {
   display: flex;
 }
@@ -107,8 +135,13 @@ ul {
 .lichenggaikuang .weather p:first-child {
   margin-top: 3px;
 }
+.bottom {
+  margin-top: 50px;
+  transition: all 1s;
+}
 .bottom ul {
   display: flex;
+  height: 90px;
 }
 .bottom ul li {
   padding: 0 10px;
@@ -119,7 +152,7 @@ ul {
   background: #034c6a;
 }
 .bottom ul li .left-1 {
-  padding: 15px  0 15px 40px;
+  padding: 25px  20px 15px 20px;
   width: 50%;
   height: 100%;
   float: left;
@@ -140,7 +173,7 @@ ul {
 }
 .bottom ul li .right-1 {
   float: right;
-  padding: 15px  0 15px 40px;
+  padding: 25px  20px 15px 20px;
   width: 50%;
   height: 100%;
 }
@@ -158,7 +191,7 @@ ul {
   color: #ffff42;
 }
 .bottom ul li .left-2 {
-  padding: 15px  0 15px 40px;
+  padding: 25px  20px 15px 20px;
   width: 50%;
   height: 100%;
   float: left;
@@ -182,7 +215,7 @@ ul {
 }
 .bottom ul li .right-2 {
   float: right;
-  padding: 15px  0 15px 40px;
+  padding: 25px  20px 15px 20px;
   width: 50%;
   height: 100%;
 }
@@ -203,7 +236,7 @@ ul {
   color: #25f3e6;
 }
 .bottom ul li .left-3 {
-  padding: 15px  0 15px 40px;
+  padding: 25px  20px 15px 20px;
   width: 50%;
   height: 100%;
   float: left;
@@ -227,7 +260,7 @@ ul {
 }
 .bottom ul li .right-3 {
   float: right;
-  padding: 15px  0 15px 40px;
+  padding: 25px  20px 15px 20px;
   width: 50%;
   height: 100%;
 }
