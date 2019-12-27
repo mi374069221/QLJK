@@ -30,9 +30,9 @@ public class AllDataController {
         } catch (ParseException e) {
             e.printStackTrace();
         }*/
-        //System.out.println("当前传入时间："+StartTime);
+        System.out.println("当前传入时间："+StartTime);
         String allDataByDate = allDataService.getAllDataByDate(StartTime);
-        //System.out.println(allDataByDate);
+        System.out.println(allDataByDate);
         return allDataByDate;
 
     }

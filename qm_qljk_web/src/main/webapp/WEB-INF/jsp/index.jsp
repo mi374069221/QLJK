@@ -264,7 +264,7 @@
                                     </div>
 
                                     <div class="none">
-                                        <table id="listData">
+                                        <table id="listDataGJ">
                                             <tr>
                                             <th>序列</th>
                                             <th>IP</th>
@@ -281,7 +281,7 @@
                                         <div  class="c-pages">
                                             <div class="cp-item">
                                                 <span>共</span>
-                                                <span id="cp-count">3</span>
+                                                <span id="cp-count">0</span>
                                                 <span>条</span>
                                             </div>
                                             <div class="cp-item">
@@ -945,11 +945,12 @@
                                         ':' + (now1.getSeconds() >= 10 ? now1.getSeconds() : '0' + now1.getSeconds());
 
                                     $.get('http://localhost:8080/allData',{StartTime:valueName1}).done(function (datas) {
-                                        temperature=datas.temperatureValues;
-                                        windSpeed = datas.windSpeedValues;
-                                        windDirection=datas.windDirectionValues;
-                                        frequency=datas.frequencyValues;
-                                        waterLevel=datas.waterLevelValues;
+                                        temperature=datas.temperatureValues.toString();
+
+                                        windSpeed = datas.windSpeedValues.toString();
+                                        windDirection=datas.windDirectionValues.toString();
+                                        frequency=datas.frequencyValues.toString();
+                                        waterLevel=datas.waterLevelValues.toString();
                                         if(waterLevel==''){
                                             waterLevel='暂无数据'
                                         }
@@ -981,7 +982,6 @@
                                 for (var i = 0; i < 60; i++) {
                                     data1 = randomData1(data1);
                                 }
-
                                 setInterval(function() {
                                     data1.x.shift()
                                     data1.wd.shift()
@@ -990,6 +990,7 @@
                                     data1.zdpl.shift()
                                     data1.fx.shift()
                                     data1 = randomData1(data1);
+                                    console.info(data1)
                                     // 指定图表的配置项和数据
                                     var option1 = {
                                         title: {
@@ -1167,8 +1168,7 @@
 <!-- MORRIS JS -->
 <script src="assets/morris.js-0.4.3/raphael-min.js"></script>
 <!-- MORRIS  JS -->
-<script src="js/chart.js"></script>
-<!-- CHART JS -->
+
 <!--Calendar-->
 <script src="js/calendar/clndr.js"></script>
 <!-- CALENDER JS -->
@@ -1322,14 +1322,15 @@
         bottom.style.display = 'block'
     })
 
-
     function getWarnList() {
 
         var list = '';
         $.get("http://localhost:8080/warnList", function (warnList) {
 
-            for (var i = 0; i < 3; i++) {
+
+            for (var i = 1; i <= 3; i++) {
                 warnList[i].dealwith==0?warnList[i].dealwith='未处理':warnList[i].dealwith='已处理'
+                warnList[i].warnleave==0?warnList[i].warnleave='警告':warnList[i].warnleave='严重'
                 if(warnList[i].des==null){
                     warnList[i].des=''
                 }
@@ -1339,11 +1340,12 @@
                     ' ' + (oldDate.getHours() >= 10 ? oldDate.getHours() : '0' +oldDate.getHours()) + ':' +
                     (oldDate.getMinutes() >= 10 ? oldDate.getMinutes() : '0' + oldDate.getMinutes()) +
                     ':' + (oldDate.getSeconds() >= 10 ? oldDate.getSeconds() : '0' + oldDate.getSeconds());
-                list = "<tr><td>" + warnList[i].id + "</td><td>" + warnList[i].nodeip +
+                list = "<tr><td>" + i + "</td><td>" + warnList[i].nodeip +
                     "</td><td>" + warnList[i].warnleave + "</td><td>" + warnList[i].fromguy + "</td><td>" +
                     warnList[i].warncontent + "</td><td>" + warnList[i].aviliablevalue + "</td><td>" + warnList[i].warnvalue + "</td><td>" +
-                    valueDate + "</td><td>" + warnList[i].dealwith + "</td><td>" + warnList[i].des + "</td></tr>";
-                $("#listData").append(list)
+                    valueDate + "</td><td><input type='radio' checked/>" + '未处理'+"<input type='radio'/>"+'已处理' + "</td><td>" + warnList[i].des + "</td></tr>";
+                $("#listDataGJ").append(list)
+                $('#cp-count').html(i);
 
             }
         })
@@ -1450,7 +1452,7 @@
         count = newsLis.length;
         totalPage = count / ONE_PAGE_COUNT + ((count % ONE_PAGE_COUNT) == 0? 0 : 1);
         currPage = 1;
-        setUICount(count);
+        //setUICount(count);
         setUIPages(totalPage);
         setUICurrPage(currPage);
         scanAllForShow(currPage);
@@ -1462,7 +1464,6 @@
         $("#goTo").click(goToPage);
 
     }
-
 /*提前加载*/
     window.onload = function(){
         listData();
